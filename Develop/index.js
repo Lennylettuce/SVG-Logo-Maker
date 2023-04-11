@@ -1,53 +1,16 @@
 // packages
 const fs = require('fs');
 const inquirer = require('inquirer');
-const svgFile = require('./examples/generateSVG.svg');
+const shapes = require('./Lib/shapes.js');
 
-const questions = [
-    {
-        type: 'list',
-        name: 'shape',
-        message: 'Choose a shape',
-        choices: ['circle', 'triangle', 'square'],
-        default: ['circle'],
-        validate: theInput => {
-            if (theInput){
-                return true;
-            } else {
-                console.log('Please choose a shape');
-                return false;
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'text',
-        message: 'What text do you want in your image?',
-        validate: theInput => {
-            if(theInput){
-                return true;
-            } else {
-                console.log('Please add text to your image');
-                return false;
-            }
-        }
-    }
-]
+//moved questions array to cli.js 
+    //cli used to store prompts, make sure to link all files so they can chat
 
-//write to svg file
-const writeFile = data => {
-    fs.writeFile('generated.svg', data, err => {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log('Success!')
-        }
-    })
-};
+// moved writefile to svg.js
 
 function init(){
     inquirer.prompt(questions)
-    .then (answers => writeFile())
+    .then (answers => writeFile(shapes.js(answers)))
 }
 
 init();

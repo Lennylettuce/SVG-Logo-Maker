@@ -1,0 +1,2 @@
+//make const for shapes, parent-then class for each shape after to differentiate code for each shape
+    //put all similar code in parent class so the rest can inherit and you dont have to rewrite code
