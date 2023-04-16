@@ -1,102 +1,96 @@
-//make const for shapes, parent-then class for each shape after to differentiate code for each shape
-    //put all similar code in parent class so the rest can inherit and you dont have to rewrite code
+const fs = require('fs');
+   
+   class Shapes {
+     constructor(text, color, bkgndColor, border) {
+       this.text = text;
+       this.color = color;
+       this.bkgndColor = bkgndColor;
+       this.border = border;
+     }
+   }
+   
+   class Circle extends Shapes {
+     constructor(text, color, bkgndColor, border) {
+       super(text, color, bkgndColor, border);
+     }
+   
+     renderSvg(path) {
+       const circle = `<svg version="1.1"
+       width="300" height="200"
+       xmlns="http://www.w3.org/2000/svg">
+   
+      <circle cx="150" cy="100" r="80" ${this.border ? `stroke-width="3" stroke="${this.color}" ` : ''}
+      fill="${this.bkgndColor}" />
+   
+      <text x="150" y="120" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
+   
+    </svg>`;
+   
+       return new Promise((res, reject) => {
+        fs.writeFile(path, circle, (err) => {
+            if (err) {
+                reject(err);
+            } else {
+                res();           
+            }         
+        });
+    });
+}
+}
 
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderColor(color) {
-    let badge = '';
-    if (color != 'None'){
-      badge = '![License Badge](https://shields.io/badge/license-' + color + '-blue)';
+class Square extends Shapes{
+    constructor(text, color, bkgndColor, border) {
+        super(text, color, bkgndColor, border);
     }
-    return badge;
-  }
-  
-  // TODO: Create a function that returns the license link
-  // If there is no license, return an empty string
-  function renderLicenseLink(shapes) {
-    let link;
+    renderSvg(path) {
+        const square = `<svg version="1.1"
+        width="300" height="200"
+        xmlns="http://www.w3.org/2000/svg">
     
-    switch(shapes) {
-      case 'MIT':
-        link = 'https://mit-license.org/';
-        break;
-      case 'Apache':
-        link = 'https://apache.org/licenses/LICENSE-2.0.html';
-        break;
-      case 'BSD':
-        link = 'http://opensource.org/licenses/BSD-3-Clause';
-        break;
-      case 'GPL':
-        link = 'https://www.gnu.org/licenses/gpl-3.0.en.html';
-        break;
-      default:
-        link = '';
-        break;
+       <rect x="50" width="200" height="200" ${this.border ? `stroke-width="3" stroke="${this.color}" ` : ''}
+       fill="${this.bkgndColor}" />
+    
+       <text x="150" y="120" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
+    
+     </svg>`;
+    
+        return new Promise((res, reject) => {
+         fs.writeFile(path, square, (err) => {
+             if (err) {
+                 reject(err);
+             } else {
+                 res();           
+             }         
+         });
+     });
+ }
+}
+class Triangle extends Shapes{
+    constructor(text, color, bkgndColor, border) {
+        super(text, color, bkgndColor, border);
     }
-    return link;
-  }
-  
-  // TODO: Create a function that returns the text
-  // If there is no text, return an empty string
+    renderSVG(path) {
+        const triangle = `<svg version="1.1"
+        width="300" height="200"
+        xmlns="http://www.w3.org/2000/svg">
+    
+       <path d="M 150 30 L 270 170 L 30 170 Z" ${this.border ? `stroke-width="3" stroke="${this.color}" ` : ''}
+       fill="${this.bkgndColor}" />
+    
+       <text x="150" y="150" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
+    
+     </svg>`;
+    
+        return new Promise((res, reject) => {
+         fs.writeFile(path, triangle, (err) => {
+             if (err) {
+                 reject(err);
+             } else {
+                 res();           
+             }         
+         });
+     });
+ }
+}
 
-  function renderTextSection(text) {
-    let section = '';
-  
-    if(text != 'None'){
-      section += text;
-    }
-    return section;
-  }
-  
-  // TODO: Create a function to generate SVG file (no append write new file every time, check week 11 day 2 work)
-    // this function will work with the code for shape/color/text to make the logos from user input
-  
-  function generateSvg(data) {
-    //edit this function to generate the logo, use shapes code, color code, etc.. change sections too
-    const svgLogo = ['Description', 'Installation', 'Usage', 'Contributing', 'Tests', 'LIcense', 'Questions'];
-  
-    let svgCode = '#' + data.title + '\n';
-  
-    svgCode += renderLicenseBadge(data.license) + '\n';
-  
-    svgCode += '## Table of Contents\n';
-    for (let i=0; i<svgLogo.length; i++) {
-      if(! (svgLogo[i] === 'License' && data.license === 'None')){
-        svgCode += i+1 + '. [' + svgLogo[i] + '](#' + svgLogo[i][0].toLowerCase() + svgLogo[i].substring(1) + ')\n';
-      }
-    }
-    svgCode += '\n';
-  
-    //description 
-    svgCode += '##' + svgLogo[0] + '\n';
-    svgCode += data.description + '\n';
-  
-    //installation
-    svgCode += '##' + svgLogo[1] + '\n';
-    svgCode += data.install + '\n';
-  
-    //usage
-    svgCode += '##' + svgLogo[2] + '\n';
-    svgCode += data.usage + '\n';
-  
-    //contribution
-    svgCode += '##' + svgLogo[3] + '\n';
-    svgCode += data.contributors + '\n';
-  
-    //testing
-    svgCode += '##' + svgLogo[4] + '\n';
-    svgCode += data.test + '\n';
-  
-    //license
-    svgCode += renderTextSection(data.license) + '\n';
-  
-    //questions
-    svgCode += '##' + svgLogo[6] + '\n';
-    svgCode += 'Checkout other projects [HERE](https://github.com/' + data.username + ') on Github \n';
-    svgCode += 'Direct any questions to ' + data.email + '. \n';
-  
-    return svgCode;
-  
-  }
-  
-  module.exports = generateSvg;
+module.exports = { Shapes: Shapes, Circle, Square, Triangle };
