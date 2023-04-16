@@ -1,6 +1,6 @@
 //write to svg file
 const writeFile = data => {
-    fs.writeFile('generated.svg', data, err => {
+    fs.writeFile('logo.svg', data, err => {
         if(err) {
             console.log(err);
         } else {
@@ -8,6 +8,7 @@ const writeFile = data => {
         }
     })
 };
+
 
 /*let svg = ""
 svg += '<?xml version="1.0" encoding="UTF-8" standalone="no"?>\n'
