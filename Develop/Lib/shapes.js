@@ -13,8 +13,8 @@ const fs = require('fs');
        super(text, color, shapeColor);
      }
    
-     renderSvg(path) {
-       const circle = `<svg version="1.1"
+     renderSvg() {
+       `<svg version="1.1"
        width="300" height="200"
        xmlns="http://www.w3.org/2000/svg">
    
@@ -23,26 +23,16 @@ const fs = require('fs');
    
       <text x="150" y="120" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
    
-     </svg>`;
-   
-       return new Promise((res, rej) => {
-        fs.writeFile(path, circle, (err) => {
-            if (err) {
-                rej(err);
-            } else {
-                res();           
-            }         
-        });
-    });
-}
+     </svg>`
+    };
 }
 
 class Square extends Shapes{
     constructor(text, color, shapeColor) {
         super(text, color, shapeColor);
     }
-    renderSvg(path) {
-        const square = `<svg version="1.1"
+    renderSvg() {
+     `<svg version="1.1"
         width="300" height="200"
         xmlns="http://www.w3.org/2000/svg">
     
@@ -51,26 +41,16 @@ class Square extends Shapes{
     
        <text x="150" y="120" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
     
-     </svg>`;
-    
-        return new Promise((res, rej) => {
-         fs.writeFile(path, square, (err) => {
-             if (err) {
-                 rej(err);
-             } else {
-                 res();           
-             }         
-         });
-     });
- }
+     </svg>`
+    };
 }
 
 class Triangle extends Shapes{
     constructor(text, color, shapeColor) {
         super(text, color, shapeColor);
     }
-    renderSvg(path) {
-        const triangle = `<svg version="1.1"
+    renderSvg() {
+         `<svg version="1.1"
         width="300" height="200"
         xmlns="http://www.w3.org/2000/svg">
     
@@ -79,18 +59,10 @@ class Triangle extends Shapes{
     
        <text x="150" y="150" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
     
-     </svg>`;
+     </svg>`
     
-        return new Promise((res, rej) => {
-         fs.writeFile(path, triangle, (err) => {
-             if (err) {
-                 rej(err);
-             } else {
-                 res();           
-             }         
-         });
-     });
- }
+    };
 }
+
 
 module.exports = { Shapes: Shapes, Circle, Square, Triangle };
