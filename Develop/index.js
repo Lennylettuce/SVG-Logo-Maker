@@ -33,6 +33,9 @@ const questions = [
               } else {
                 return 'Please enter a valid color name OR hex code.';
               }
+        },
+        filter: theInput => {
+            return theInput.toLowerCase();
         }
     },
     {
@@ -62,6 +65,9 @@ const questions = [
                     return 'Please enter a valid color name OR hex-code.';
                 }
               }
+        },
+        filter: theInput => {
+            return theInput.toLowerCase();
         }
     }
 ]
@@ -83,7 +89,7 @@ const writeFile = data => {
 //init function
 function init(){
     inquirer.prompt(questions)
-    .then (answers => writeFile(shape(answers)));
+    .then (answers => writeFile(renderSvg(answers)));
 }
 
 init();

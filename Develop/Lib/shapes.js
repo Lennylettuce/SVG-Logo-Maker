@@ -38,8 +38,8 @@ const fs = require('fs');
 }
 
 class Square extends Shapes{
-    constructor(text, color, bkgndColor, border) {
-        super(text, color, bkgndColor, border);
+    constructor(text, color, bkgndColor) {
+        super(text, color, bkgndColor);
     }
     renderSvg(path) {
         const square = `<svg version="1.1"
