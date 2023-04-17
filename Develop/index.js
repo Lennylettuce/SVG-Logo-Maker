@@ -1,7 +1,7 @@
 // packages
 const fs = require('fs');
 const inquirer = require('inquirer');
-const hexColor = require('color-string');
+const colorString = require('color-string');
 const shape = require('./Lib/shapes.js');
 
 const questions = [
