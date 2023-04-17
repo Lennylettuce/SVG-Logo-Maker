@@ -1,92 +1,43 @@
 // packages
 const fs = require('fs');
 const inquirer = require('inquirer');
-const colorString = require('color-string');
 const shapes = require('./Lib/shapes.js');
+const questions = require('./Lib/prompt.js');
+const fileName = "./examples/logo.svg";
 
-const questions = [
-    {
-        type: 'input',
-        name: 'text',
-        message: 'Please enter no more than three letters for your logo.',
-        validate: theInput => {
-            if(/^[a-zA-Z0-9]+$/.test(theInput) && theInput.length <= 3 && theInput.length >= 1){
-                //valid chars, test and length between 1 and 3
-                return true;
-            } else {
-                return 'Only three characters allowed per logo.';
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'color',
-        message: 'Please enter a text color for your logo.',
-        validate: theInput => {
-            if (/^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(theInput)) {
-                return true;
-              } else if (/^[a-zA-Z]+$/.test(theInput)) {
-                const colorObj = colorString.get(theInput);
-                if (colorObj !== null) {
-                    return true;
-                }
-              } else {
-                return 'Please enter a valid color name OR hex code.';
-              }
-        },
-        filter: theInput => {
-            return theInput.toLowerCase();
-        }
-    },
-    {
-        type: 'list',
-        name: 'shape',
-        message: 'Choose a shape',
-        choices: ['circle', 'triangle', 'square'],
-        default: ['circle'],
-        validate: theInput => {
-            if (theInput){
-                return true;
-            } else {
-                return 'Please choose a shape for your logo.';
-            }
-        }
-    },
-    {
-        type: 'input',
-        name: 'color',
-        message: 'Please enter shape color for your logo.',
-        validate: theInput => {
-            if (/^[a-zA-Z]+$/.test(theInput) || /^#?([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$/.test(theInput)) {
-                const colorObj = colorString.get(theInput);
-                if (colorObj !== null) {
-                    return true;
-                } else {
-                    return 'Please enter a valid color name OR hex-code.';
-                }
-              }
-        },
-        filter: theInput => {
-            return theInput.toLowerCase();
-        }
+function shapebuild(response) {
+
+    if (response.shape === 'Circle') {
+        let userInput = new Circle (response.shapeColor, response.text, response.textColor)
+        return userInput.renderSvg()
     }
-]
 
-//write to svg file
-const writeFile = data => {
-    fs.writeFile('logo.svg', data, err => {
-        if(err) {
-            console.log(err);
-        } else {
-            console.log('Generated logo.svg');
-        }
-    })
+    if (response.shape === 'Square') {
+        let userInput = new Square (response.shapeColor, response.text, response.textColor)
+        return userInput.renderSvg()
+    }
+
+    if (response.shape === 'Triangle') {
+        let userInput = new Triangle (response.shapeColor, response.text, response.textColor)
+        return userInput.renderSvg()
+    }
 };
 
-//init function
-function init(){
-    inquirer.prompt(questions)
-    .then (answers => writeFile(renderSvg(answers)));
+function logoBuild(response) {
+    const svgBuild = shapeBuild(response);
+    fs.writeFile(fileName, svgBuild, ()=> console.log('Generated logo.svg'));
+}
+
+// initialize, ask questions then createLogo using responses, catch any errors
+function init() {
+    inquirer 
+    .prompt(questions)
+    .then((response) => {
+        logoBuild(response);
+        })
+    .catch(err => {
+            console.log(err)
+        });
 }
 
 init();
