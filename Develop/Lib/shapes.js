@@ -9,8 +9,8 @@ const fs = require('fs');
    }
    
    class Circle extends Shapes {
-     constructor(text, color, bkgndColor) {
-       super(text, color, bkgndColor);
+     constructor(text, color, shapeColor) {
+       super(text, color, shapeColor);
      }
    
      renderSvg(path) {
@@ -23,7 +23,7 @@ const fs = require('fs');
    
       <text x="150" y="120" font-size="60" text-anchor="middle" fill="${this.color}">${this.text}</text>
    
-    </svg>`;
+     </svg>`;
    
        return new Promise((res, rej) => {
         fs.writeFile(path, circle, (err) => {
@@ -38,8 +38,8 @@ const fs = require('fs');
 }
 
 class Square extends Shapes{
-    constructor(text, color, bkgndColor) {
-        super(text, color, bkgndColor);
+    constructor(text, color, shapeColor) {
+        super(text, color, shapeColor);
     }
     renderSvg(path) {
         const square = `<svg version="1.1"
@@ -64,9 +64,10 @@ class Square extends Shapes{
      });
  }
 }
+
 class Triangle extends Shapes{
-    constructor(text, color, bkgndColor) {
-        super(text, color, bkgndColor);
+    constructor(text, color, shapeColor) {
+        super(text, color, shapeColor);
     }
     renderSvg(path) {
         const triangle = `<svg version="1.1"

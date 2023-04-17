@@ -2,7 +2,7 @@
 const fs = require('fs');
 const inquirer = require('inquirer');
 const colorString = require('color-string');
-const shape = require('./Lib/shapes.js');
+const shapes = require('./Lib/shapes.js');
 
 const questions = [
     {
@@ -89,7 +89,7 @@ const writeFile = data => {
 //init function
 function init(){
     inquirer.prompt(questions)
-    .then (answers => writeFile(renderSvg(answers)));
+    .then (answers => writeFile(shapes(answers)));
 }
 
 init();
