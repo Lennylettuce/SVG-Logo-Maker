@@ -14,7 +14,7 @@ const questions = [
     },
     {
         name: 'textColorFormat',
-        message: 'What is the color of the text? Choose a color format: ',
+        message: 'Choose a color format for text color: ',
         type: 'list',
         choices: ['color keyword', 'hexadecimal']
     },
@@ -50,7 +50,7 @@ const questions = [
         validate: (answer) => {
             const hexRegEx = '^#[A-Fa-f0-9]{6}$'
             if (!answer.match(hexRegEx)) {
-                return console.log("\n Please enter a valid hexadecimal")
+                return console.log("Please enter a valid hexadecimal")
             }
             return true;
         }
@@ -63,7 +63,7 @@ const questions = [
     },
     {
         name: 'colorFormat',
-        message: 'What is the color of the shape? Choose a color format: ',
+        message: 'Choose a color format for your shape: ',
         type: 'list',
         choices: ['color keyword', 'hexadecimal']
     },
@@ -83,7 +83,7 @@ const questions = [
                 if (answerLowercase.indexOf(colorKeywords[i]) != -1) {
                 return true;
             }}
-            return console.log("\n Please enter a valid color keyword")
+            return console.log("Please enter a valid color keyword!")
         }
     },
     {
@@ -99,11 +99,11 @@ const questions = [
         validate: (answer) => {
             const hexRegEx = '^#[A-Fa-f0-9]{6}$'
             if (!answer.match(hexRegEx)) {
-                return console.log("\n Please enter a valid hexadecimal")
+                return console.log("Please enter a valid hexadecimal")
             }
             return true;
         }
     }
 ];
 
-module.exports = questions;
+module.exports = questions, colorKeywords;

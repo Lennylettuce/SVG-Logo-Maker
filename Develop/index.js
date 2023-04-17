@@ -5,26 +5,10 @@ const shapes = require('./Lib/shapes.js');
 const questions = require('./Lib/prompt.js');
 const fileName = "./examples/logo.svg";
 
-function shapebuild(response) {
 
-    if (response.shape === 'Circle') {
-        let userInput = new Circle (response.shapeColor, response.text, response.textColor)
-        return userInput.renderSvg()
-    }
-
-    if (response.shape === 'Square') {
-        let userInput = new Square (response.shapeColor, response.text, response.textColor)
-        return userInput.renderSvg()
-    }
-
-    if (response.shape === 'Triangle') {
-        let userInput = new Triangle (response.shapeColor, response.text, response.textColor)
-        return userInput.renderSvg()
-    }
-};
 
 function logoBuild(response) {
-    const svgBuild = shapeBuild(response);
+    const svgBuild = shapes(response);
     fs.writeFile(fileName, svgBuild, ()=> console.log('Generated logo.svg'));
 }
 
