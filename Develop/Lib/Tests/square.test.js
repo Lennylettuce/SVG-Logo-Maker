@@ -1,7 +1,7 @@
 const Square = require('../square.js');
 
 describe('Square', () => {
-    it('should return square that is red with yellow text', () => {
+    it('should return logo', () => {
         const square = new Square('red','AUB','yellow');
         expect(square.render()).toEqual(`
         <svg version="1.1"

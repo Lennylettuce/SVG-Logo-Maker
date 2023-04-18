@@ -1,7 +1,7 @@
 const Triangle = require('../triangle.js');
 
 describe('Triangle', () => {
-    it('should return a green triangle with blue text', () => {
+    it('should return logo', () => {
         const triangle = new Triangle('lime','AUB','aliceblue');
         expect(triangle.render()).toEqual(`
         <svg version="1.1" 

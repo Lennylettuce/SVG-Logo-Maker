@@ -1,7 +1,7 @@
 const Circle = require('../circle.js');
 
 describe('Circle', () => {
-    it('should return a blue circle with white text', () => {
+    it('should return logo', () => {
         const circle = new Circle('blue','AUB','white');
         expect(circle.render()).toEqual(`
         <svg version="1.1"
