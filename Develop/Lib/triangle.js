@@ -4,7 +4,7 @@ class Triangle extends Shapes{
     constructor(text, textColor, shapeColor) {
         super(text, textColor, shapeColor);
     }
-    renderSvg() {
+    render() {
          `<svg version="1.1"
         width="300" height="200"
         xmlns="http://www.w3.org/2000/svg">

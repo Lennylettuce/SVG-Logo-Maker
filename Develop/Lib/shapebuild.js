@@ -7,17 +7,17 @@ function shapeBuild(response) {
 
     if (response.shape === 'Circle') {
         let userInput = new Circle (response.shapeColor, response.text, response.textColor)
-        return userInput.renderSvg()
+        return userInput.render()
     }
 
     if (response.shape === 'Square') {
         let userInput = new Square (response.shapeColor, response.text, response.textColor)
-        return userInput.renderSvg()
+        return userInput.render()
     }
 
     if (response.shape === 'Triangle') {
         let userInput = new Triangle (response.shapeColor, response.text, response.textColor)
-        return userInput.renderSvg()
+        return userInput.render()
     }
 };
 

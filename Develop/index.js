@@ -1,14 +1,13 @@
 // packages
 const fs = require('fs');
 const inquirer = require('inquirer');
-const shapes = require('./Lib/shapes.js');
 const questions = require('./Lib/prompt.js');
 const fileName = "./examples/logo.svg";
-
+const shapesFunc = require('./Lib/shapebuild.js');
 
 
 function logoBuild(response) {
-    const svgBuild = shapes(response);
+    const svgBuild = shapesFunc(response);
     fs.writeFile(fileName, svgBuild, ()=> console.log('Generated logo.svg'));
 }
 

@@ -5,7 +5,7 @@ class Circle extends Shapes {
        super(text, textColor, shapeColor);
     }
    
-    renderSvg() {
+    render() {
 
        `<svg version="1.1"
        width="300" height="200"
