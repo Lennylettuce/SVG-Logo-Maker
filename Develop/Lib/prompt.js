@@ -103,7 +103,7 @@ const questions = [
             }
             return true;
         }
-    }
+    },
 ];
 
 module.exports = questions, colorKeywords;

@@ -4,6 +4,6 @@ class Shapes {
        this.textColor = textColor;
        this.shapeColor = shapeColor;
     }
-}
+};
 
 module.exports = Shapes;
