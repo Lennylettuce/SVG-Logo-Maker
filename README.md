@@ -1,5 +1,8 @@
 # SVG-Logo-Maker
 ![License Badge](https://shields.io/badge/license-MIT-blue)
+
+[![Watch the video](https://drive.google.com/file/d/1zx3XS__b-TXZeLwRRwvqZO_vBm-ZmnbM/view)](https://drive.google.com/file/d/1zx3XS__b-TXZeLwRRwvqZO_vBm-ZmnbM/view)
+
 ## Table of Contents
 1. [Description](#description)
 2. [Installation](#installation)
